@@ -13,6 +13,9 @@ test: $(SOURCE_FILES) $(HEADER_FILES)
 
 ./$(TEST_NAME): test
 
+debugTest: $(SOURCE_FILES) $(HEADER_FILES)
+	gcc -Wall -g $(SOURCE_FILES) $(TEST_FILE) -lGenericStructures -o $(TEST_NAME)
+
 leakCheck: ./$(TEST_NAME)
 	valgrind --leak-check=full ./$(TEST_NAME)
 	rm -rf $(TEST_NAME).dSYM

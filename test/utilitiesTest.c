@@ -1,5 +1,10 @@
 #include "../src/utilities.h"
+
 #include <stdio.h>
+
+void strPrinter(void* str) {
+    printf("|%s|\n", (char*)str);
+}
 
 int main() {
 
@@ -12,4 +17,10 @@ int main() {
     }
     printf("%i\n", res);
     timer(STOP);
+
+    char* str = "Hello world foo  bar";
+
+    arrayList* al = split(str, ' ');
+    iterateListItems(al, strPrinter);
+    freeAl(al, true);
 }
