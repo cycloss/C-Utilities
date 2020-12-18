@@ -23,4 +23,19 @@ int main() {
     arrayList* al = split(str, ' ');
     iterateListItems(al, strPrinter);
     freeAl(al, true);
+
+    stringBuilder* sb = createStringBuilder();
+    appendToBuilder(sb, "Hello");
+    appendToBuilder(sb, "World");
+
+    puts(sb->string);
+    int builderLen = getBuilderStringLength(sb);
+    printf("Builder length (not including null terminator): %i\n", builderLen);
+    printf("Last char of builder: %c\n", sb->string[builderLen - 1]);
+
+    clearBuilder(sb);
+    appendToBuilder(sb, "Foo");
+    appendToBuilder(sb, "Bar");
+    puts(sb->string);
+    freeBuilder(sb);
 }
