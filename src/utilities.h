@@ -14,6 +14,8 @@ stringBuilder* createStringBuilder();
  */
 void appendToBuilder(stringBuilder* sb, char* strToAppend);
 
+void appendCharToBuilder(stringBuilder* sb, char charToAppend);
+
 /**
  * @return the length of the string in the builder not including the null terminator. "Hello" would return 5. 
  */

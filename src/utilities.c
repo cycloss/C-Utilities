@@ -29,6 +29,18 @@ void appendToBuilder(stringBuilder* sb, char* strToAppend) {
     sb->_nextInd += strLen - 1;
 }
 
+void appendCharToBuilder(stringBuilder* sb, char charToAppend) {
+    //add one for shifting null terminator
+    if (sb->_nextInd + 1 >= sb->_currentCapacity) {
+        int newCap = sb->_currentCapacity * SB_GROWTH_FACTOR;
+        // printf("Expanding capacity from %i to %i\n", sb->_currentCapacity, newCap);
+        sb->string = realloc(sb->string, sizeof(char) * newCap);
+        sb->_currentCapacity = newCap;
+    }
+    sb->string[sb->_nextInd++] = charToAppend;
+    sb->string[sb->_nextInd] = '\0';
+}
+
 int getBuilderStringLength(stringBuilder* sb) {
     return sb->_nextInd;
 }

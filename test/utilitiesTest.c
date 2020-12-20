@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 
+#define len(x) sizeof(x) / sizeof(x[0])
+
 void strPrinter(void* str) {
     printf("|%s|\n", (char*)str);
 }
@@ -38,4 +40,30 @@ int main() {
     appendToBuilder(sb, "Bar");
     puts(sb->string);
     freeBuilder(sb);
+
+    puts("Checking character add...");
+
+    stringBuilder* sb2 = createStringBuilder();
+
+    char letters[] = {
+        'h',
+        'e',
+        'l',
+        'l',
+        'o',
+        'w',
+        'o',
+        'r',
+        'l',
+    };
+
+    for (int i = 0; i < len(letters); i++) {
+        appendCharToBuilder(sb2, letters[i]);
+    }
+    puts(sb->string);
+    printf("Capacity: %d\n", sb2->_currentCapacity);
+    appendCharToBuilder(sb2, 'd');
+    puts(sb->string);
+    printf("Capacity: %d\n", sb2->_currentCapacity);
+    freeBuilder(sb2);
 }
