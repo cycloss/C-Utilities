@@ -39,7 +39,7 @@ int main() {
     appendToBuilder(sb, "Foo");
     appendToBuilder(sb, "Bar");
     puts(sb->string);
-    freeBuilder(sb);
+    freeBuilder(sb, true);
 
     puts("Checking character add...");
 
@@ -65,5 +65,5 @@ int main() {
     appendCharToBuilder(sb2, 'd');
     puts(sb->string);
     printf("Capacity: %d\n", sb2->_currentCapacity);
-    freeBuilder(sb2);
+    freeBuilder(sb2, true);
 }

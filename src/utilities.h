@@ -1,5 +1,7 @@
 #include <arrayList.h>
 
+void* fatalError(char* formatString, ...);
+
 typedef struct {
     char* string;
     //where the null terminator is currently
@@ -20,7 +22,7 @@ void appendCharToBuilder(stringBuilder* sb, char charToAppend);
  * @return the length of the string in the builder not including the null terminator. "Hello" would return 5. 
  */
 int getBuilderStringLength(stringBuilder* sb);
-void freeBuilder(stringBuilder* sb);
+void freeBuilder(stringBuilder* sb, bool freeString);
 void clearBuilder(stringBuilder* sb);
 
 /**

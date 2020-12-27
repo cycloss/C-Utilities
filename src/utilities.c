@@ -1,5 +1,6 @@
 #include "utilities.h"
 #include <arrayList.h>
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,6 +8,16 @@
 
 #define SB_INITIAL_SIZE 10
 #define SB_GROWTH_FACTOR 2
+
+void* fatalError(char* formatString, ...) {
+    printf("Fatal error: ");
+    va_list args;
+    va_start(args, formatString);
+    vprintf(formatString, args);
+    puts("");
+    exit(1);
+    return NULL;
+}
 
 stringBuilder* createStringBuilder() {
     stringBuilder* sb = malloc(sizeof(stringBuilder));
@@ -45,8 +56,10 @@ int getBuilderStringLength(stringBuilder* sb) {
     return sb->_nextInd;
 }
 
-void freeBuilder(stringBuilder* sb) {
-    free(sb->string);
+void freeBuilder(stringBuilder* sb, bool freeString) {
+    if (freeString) {
+        free(sb->string);
+    }
     free(sb);
 }
 
