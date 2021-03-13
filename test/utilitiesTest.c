@@ -20,7 +20,7 @@ int main() {
     printf("%i\n", res);
     timer(STOP);
 
-    char* str = "Hello world foo  bar";
+    char* str = "Hello world foo bar";
 
     arrayList* al = split(str, ' ');
     iterateListItems(al, strPrinter);

@@ -28,16 +28,18 @@ stringBuilder* createStringBuilder() {
 }
 
 void appendToBuilder(stringBuilder* sb, char* strToAppend) {
-    int strLen = strlen(strToAppend) + 1;
-    while (sb->_nextInd + strLen > sb->_currentCapacity) {
+    int strLenNT = strlen(strToAppend) + 1;
+    while (sb->_nextInd + strLenNT > sb->_currentCapacity) {
         int newCap = sb->_currentCapacity * SB_GROWTH_FACTOR;
         // printf("Expanding capacity from %i to %i\n", sb->_currentCapacity, newCap);
         sb->string = realloc(sb->string, sizeof(char) * newCap);
         sb->_currentCapacity = newCap;
     }
-    memcpy(sb->string + sb->_nextInd, strToAppend, strLen);
-    //-1 as want to put next string where the null terminator is
-    sb->_nextInd += strLen - 1;
+    memcpy(sb->string + sb->_nextInd, strToAppend, strLenNT);
+    // minus one bc added null terminator
+    int nextIndex = sb->_nextInd + strLenNT - 1;
+    sb->string[nextIndex] = '\0';
+    sb->_nextInd = nextIndex;
 }
 
 void appendCharToBuilder(stringBuilder* sb, char charToAppend) {

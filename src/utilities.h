@@ -12,7 +12,8 @@ typedef struct {
 stringBuilder* createStringBuilder();
 
 /**
- * Copies the string to be appended (don't forget to free the original string if it was on the heap)
+ * Copies the string to be appended.
+ * Don't forget to free the original string if it was on the heap, as it will not be freed by this function
  */
 void appendToBuilder(stringBuilder* sb, char* strToAppend);
 
