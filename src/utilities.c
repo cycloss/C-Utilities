@@ -10,10 +10,10 @@
 #define SB_GROWTH_FACTOR 2
 
 void* fatalError(char* formatString, ...) {
-    printf("Fatal error: ");
+    fprintf(stderr, "Fatal error: ");
     va_list args;
     va_start(args, formatString);
-    vprintf(formatString, args);
+    vfprintf(stderr, formatString, args);
     puts("");
     exit(1);
     return NULL;
@@ -114,4 +114,29 @@ void timer(int operation) {
         printf("Timer operation: %d is invalid, please use START or STOP\n", operation);
         exit(1);
     }
+}
+
+void printBinary(int num) {
+    printf("Bits for %d: ", num);
+    unsigned long bits = sizeof(num) * 4;
+    for (int mask = 1 << (bits - 1); mask; mask >>= 1) {
+        int bit = num & mask;
+        putchar(bit ? '1' : '0');
+        if (--bits % 4 == 0) {
+            putchar(' ');
+        }
+    }
+    putchar('\n');
+}
+
+char* toBinaryString(int num) {
+    unsigned long bits = sizeof(num) * 4;
+    char* bitArr = malloc(sizeof(char) * bits + 1);
+    int i = 0;
+    for (int mask = 1 << (bits - 1); mask; mask >>= 1) {
+        int bit = num & mask;
+        bitArr[i++] = bit ? '1' : '0';
+    }
+    bitArr[i] = '\0';
+    return bitArr;
 }

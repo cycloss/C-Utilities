@@ -1,9 +1,5 @@
 #include "../src/utilities.h"
 
-#include <stdio.h>
-
-#define len(x) sizeof(x) / sizeof(x[0])
-
 void strPrinter(void* str) {
     printf("|%s|\n", (char*)str);
 }
@@ -66,4 +62,9 @@ int main() {
     puts(sb->string);
     printf("Capacity: %d\n", sb2->_currentCapacity);
     freeBuilder(sb2, true);
+
+    printBinary(255);
+    char* binStr = toBinaryString(255);
+    printf("%s", binStr);
+    free(binStr);
 }

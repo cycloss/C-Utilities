@@ -1,4 +1,8 @@
 #include <arrayList.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#define len(x) sizeof(x) / sizeof(x[0])
 
 void* fatalError(char* formatString, ...);
 
@@ -37,3 +41,6 @@ arrayList* split(char* string, char separator);
 #define START 1
 #define STOP 0
 void timer(int operation);
+
+void printBinary(int num);
+char* toBinaryString(int num);
